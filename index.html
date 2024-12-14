@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #f0035a;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .location-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .location-button {
+            background-color: #ff85a2;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .location-button:hover {
+            background-color: #ff4b8d;
+            transform: scale(1.05);
+        }
+        #thinker-img {
+            max-width: 200px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        #itinerary {
+            display: none;
+            background-color: #ffd6e0;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        #itinerary h2 {
+            font-family: 'Pacifico', cursive;
+            color: #ff4b8d;
+            margin-bottom: 10px;
+        }
+        #itinerary ol {
+            padding-left: 20px;
+        }
+        #itinerary li {
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        @keyframes glitter {
+            0% { text-shadow: 0 0 5px #ff85a2, 0 0 10px #ff85a2, 0 0 15px #ff85a2; }
+            50% { text-shadow: 0 0 20px #ff4b8d, 0 0 35px #ff4b8d, 0 0 40px #ff4b8d; }
+            100% { text-shadow: 0 0 5px #ff85a2, 0 0 10px #ff85a2, 0 0 15px #ff85a2; }
+        }
+        .glitter {
+            animation: glitter 1.5s ease-in-out infinite alternate;
+            color: rgb(255, 255, 255);
+            font-weight: 400;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .location-button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="glitter">Where Shall We Rendezvous, Muskan?</h1>
+        <div class="location-buttons">
+            <button class="location-button" onclick="selectLocation('Khan Market')">Khan Market</button>
+            <button class="location-button" onclick="selectLocation('CP')">CP</button>
+            <button class="location-button" onclick="alert('Please try again, mistakes happen!')">Nowhere, too cringe</button>
+        </div>
+        <p>Saket and GK would be too far from Ashok Vihar :p</p>
+        <img id="thinker-img" src="https://img.freepik.com/free-vector/hand-drawn-flat-design-shrug-illustration_23-2149363478.jpg" alt="The Thinker">
+        <div id="itinerary">
+            <h2>Our Goofy Itinerary</h2>
+            <ol>
+                <li>We'll meet up (try not to swoon too hard)</li>
+                <li>We'll both pretend to like each other's jokes (when secretly we love them)</li>
+                <li>Engage in an intense staring contest</li>
+                <li>We'll eat amazing food 🍕</li>
+                <li>I drop you off and if things go well I get a goodbye kiss (no pressure, a high-five works too)</li>
+                <li>You secretly text your BFF about how amazing the date was! 📱</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function selectLocation(location) {
+            confetti({
+                particleCount: 500,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            document.querySelector('h1').textContent = `Yay, Muskan! ${location} it is!`;
+            document.getElementById('itinerary').style.display = 'block';
+            document.getElementById('selected-location').textContent = location;
+
+            // Change the image
+            document.getElementById('thinker-img').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJS82hlL6yYnTAfxfynrKup3SVFhiWpvXinA&s";
+            document.getElementById('thinker-img').style.transform = "scale(1.1)";
+
+            // Hide location buttons
+            document.querySelector('.location-buttons').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
